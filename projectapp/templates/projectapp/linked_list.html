@@ -1,0 +1,5 @@
+<ul>
+{% for item in object_list %}
+    <a href = "{% url 'student_name_eid' item.eid %}" ><p> {{ item.title }} </p></a>
+{% endfor %}
+</ul>

@@ -1,59 +1,45 @@
 from django.db import models
 import random
 
-# Create your models here.
 
 class Project(models.Model):
     title = models.CharField(max_length=50, default='')
-    course = models.CharField(max_length=50, default='')
-    students = models.CharField(max_length=50, default='')
-    tags = models.CharField(max_length=50, default='')
+    description = models.CharField(max_length=50, default='')
+#    course = models.CharField(max_length=50, default='')
+#    students = models.ForeignKey(Student, default = '1', on_delete=models.CASCADE)
+#    tags = models.CharField(max_length=50, default='')
     def __str__(self):
         return self.title
-#    def generate_id(self):
-#        project_id = 'p'
-#        for i in range(10):
-#            project_id += random.randint(0, 9)
-#        return project_id
-    
-#
-#class Student(models.Model):
-#    def __init__(self, name):
-#        self.student_id = self.generate_id
-#        self.name = name
-#        self.projects = []
-#    def __str__(self):
-#        return self.name
-#    def generate_id(self):
-#        student_id = 's'
-#        for i in range(10):
-#            student_id += random.randint(0, 9)
-#        return student_id
-#
-#
-#class Professor(models.Model):
-#    def __init__(self, name):
-#        self.professor_id = self.generate_id
-#        self.name = name
-#        self.courses = []
-#    def __str__(self):
-#        return self.name
-#    def generate_id(self):
-#        professor_id = 's'
-#        for i in range(10):
-#            professor_id += random.randint(0, 9)
-#        return professor_id
-#
-#
-#class Course(models.Model):
-#    def __init__(self, title):
-#        self.title = title
-#    def __str__(self):
-#        return self.title
-#    
-#
-#class Tag(models.Model):
-#    def __init__(self, title):
-#        self.title = title
-#    def __str__(self):
-#        return self.title
+
+
+class Course(models.Model):
+    title = models.CharField(max_length=50, default='')
+    abbreviation = models.CharField(max_length=50, default='')
+    semester = models.CharField(max_length=50, default='')
+    #professors = models.ManyToManyField
+    projects = models.ManyToManyField(Project)
+    def __str__(self):
+        return self.abbreviation + ' ' + self.semester
+
+
+class Student(models.Model):
+    name = models.CharField(max_length=50, default='')
+    eid = models.CharField(max_length=50, default='')
+    projects = models.ManyToManyField(Project)
+    def __str__(self):
+        return self.name
+
+
+class Professor(models.Model):
+    name = models.CharField(max_length=50, default='')
+    eid = models.CharField(max_length=50, default='')
+    courses = models.ManyToManyField(Course)
+    def __str__(self):
+        return self.name
+
+
+class Tag(models.Model):
+    title = models.CharField(max_length=50, default='')
+    projects = models.ManyToManyField(Project)
+    def __str__(self):
+        return self.title
