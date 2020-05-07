@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<title>Longhorn.done()</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+h1 {padding-left: 20px; padding-right: 20px;}
+h3,h6,p {text-align: left; padding-left: 10px; padding-right: 10px;}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: white;
+}
+.spacer {height: 20px;}
+a {text-decoration: none}
+</style>
+<body style="background-image: url('https://www.utexas.edu/sites/default/files/styles/utexas_hero_photo_image/public/hero-photos/maincampus_hero.jpg?itok=ZkKrhFki'); background-size: 100%; background-repeat: no-repeat;" >
+
+<div class="w3-card-4 w3-white " style="padding: 10px">
+  <h1>Longhorn.done()</h1>
+</div>
+
+
+<!-- Projects -->
+<div class="w3-col l4" style="margin-right:80%">
+  <!-- Student Entry-->
+  <div class="w3-card-4 w3-margin w3-white w3-hover-black" style="padding: 10px; opacity: 0.8">
+    <a href="{% url 'course_list_page' %}"><h6>Course List Page</h6></a>
+  </div>
+  <div class="w3-card-4 w3-margin w3-white w3-hover-black" style="padding: 10px; opacity: 0.8">
+    <a href="{% url 'professor_list_page' %}"><h6>Professor List Page</h6></a>
+  </div>
+  <div class="w3-card-4 w3-margin w3-white w3-hover-black" style="padding: 10px; opacity: 0.8">
+    <a href="{% url 'student_list_page' %}"><h6>Student List Page</h6></a>
+  </div>
+
+</div>
+</body>
+</html>

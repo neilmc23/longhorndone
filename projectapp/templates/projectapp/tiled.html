@@ -26,6 +26,7 @@
 .w3-hover-border-theme:hover {border-color:#bf5700 !important}
 </style>
 
+
 <!-- Navigation Bar -->
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -68,38 +69,59 @@ body {
   <a href="#courses">Courses</a>
   <a href="#students">Students</a>
 </div>
-    
+
+
 <!-- Main Content -->
-<title>{{ object_name }}</title>
+<title>Title</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="./longhorn_done_styles.css">
 <style>
 h1 {padding-left: 20px; padding-right: 20px;}
 h3,h6,p {text-align: left; padding-left: 10px; padding-right: 10px;}
 .spacer {height: 10px;}
-a {text-decoration: none}
 </style>
 <body class="w3-light-grey">
 
 <!-- Sidebar -->
 <div class="w3-sidebar w3-bar-block w3-theme" style="width:25%">
-  <h1><b>{{ object_name }}</b></h1>
+  <h1><b>Application Programming</b></h1>
   <div style="padding: 20px">
+    <button class="w3-button w3-block w3-white" style="padding: 10px">Prof Pryor</button>
+    <div class="spacer"></div>
+    <button class="w3-button w3-block w3-white" style="padding: 10px">Spring 2020</button>
   </div>
-  <div>
-    <button class="w3-button w3-block w3-hover-black" style="position: absolute;bottom: 0px;"><h6>Back</h6></button>
+  <div style="padding: 20px">
+    <h6>Total Students:</h6>
+    <h6>Total Projects:</h6>
   </div>
 </div>
 
 <!-- Projects -->
 <div class="w3-col l8" style="margin-left:30%">
-  <!-- Student Entry-->
-  {% for item in object_list %}
-      <div class="w3-card-4 w3-margin w3-white w3-hover-black" style="padding: 10px">
-        <a href = "{% url item.view_page item.get_link %}" ><p> {{ item.name }} </p></a>
-      </div>
-  {% endfor %}
+{% for item in project_info %}
+  <!-- project entry -->
+  <div class="w3-card-4 w3-margin w3-white" style="padding: 10px">
+    <div class="w3-container">
+    <button style="padding: 0px" class="w3-button"><h3><b>{{ item.name }}</b></h3></button>
+    </div>
+    <img src={{ item.image.name }} alt="longhorn" style="width:50%">
+    <div class="w3-container">
+      <h6>Group Members:</h6>
+      {% for s in item.students.all %}
+          <p>{{ s.name }}</p>
+      {% endfor %}
+    </div>
+    <div class="w3-container">
+    <p>Tags:</p>
+    {% for t in item.tags.all %}
+      <p>{{ t.name }}</p>
+    {% endfor %}
+    </div>
+  </div>
+{% endfor %}
 </div>
+
 </body>
 </html>
