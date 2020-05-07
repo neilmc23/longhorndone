@@ -29,7 +29,7 @@ def student_list_page(request):
 def course_page(request, course_link):
     c = [ ci for ci in Course.objects.all() if ci.get_link() == course_link ][0]
     latest_project_list = c.project_set.all()
-    context = {'object_name': c.name, 'project_info': latest_project_list}
+    context = {'object_name': str(c), 'project_info': latest_project_list}
     return render(request, 'projectapp/tiled.html', context)
 
 def professor_page(request, professor_eid):

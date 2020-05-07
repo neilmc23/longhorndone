@@ -84,6 +84,10 @@ a {text-decoration: none}
 <div class="w3-sidebar w3-bar-block w3-theme" style="width:25%; z-index: -1">
   <div class="spacer_nav"></div>
   <h1><b>{{ object_name }}</b></h1>
+  {% load static %}
+  <div class="w3-bottom">
+    <img src="{% static 'ut_logo.jpg' %}" alt=ut_logo style="width:24%">
+  </div>
 </div>
 
 <!-- List -->
@@ -92,7 +96,7 @@ a {text-decoration: none}
   <!--Entry-->
   {% for item in object_list %}
       <div class="w3-card-4 w3-margin w3-white w3-hover-black" style="padding: 10px">
-        <a href = "{% url item.view_page item.get_link %}" ><p> {{ item.name }} </p></a>
+        <a href = "{% url item.view_page item.get_link %}" ><p> {{ item }} </p></a>
       </div>
   {% endfor %}
 </div>

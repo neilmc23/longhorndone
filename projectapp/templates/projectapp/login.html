@@ -5,16 +5,30 @@
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
 </head>
+
 <body>
     <main class="container">
         <h1>LOGIN</h1>
         <p>Username</p>
-        <input type="text" name="" placeholder="Username">
+        <input type="text" id="UserText" placeholder="Username">
         <p>Password</p>
-        <input type="Password" name="" placeholder="Password">
-        <a href="{% url 'home_page' %}"><input class="button" type"Submit" name="" value="Login"></a>
+        <input type="Password" id="PassText" placeholder="Password">
+        <a href="#" onclick="logincheck()"><input class="button" type="Submit" id="LoginButton" name="" value="Login"></a>
         <a href="#">Forgot Password?</a>
         <a href="#">Don't Have an Account?</a>
     <main>
+
+<script>
+function logincheck() {
+  var user_box = document.getElementById("UserText").value
+  var pass_box = document.getElementById("PassText").value
+  if (user_box == "iamgroot" && pass_box == "programmingrocks") {
+   window.location.replace("http://127.0.0.1:8000/projectapp/home/");
+  } else {
+   var but = document.getElementById("LoginButton").value = "INVALID LOGIN";
+  };
+};
+</script>
+    
 </body>
 </html>

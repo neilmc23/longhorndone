@@ -11,7 +11,7 @@ class Course(models.Model):
         semester_no_spaces = self.semester.replace(' ','')
         return abbreviation_no_spaces + '_' + semester_no_spaces
     def __str__(self):
-        return self.abbreviation + ' ' + self.semester
+        return self.name + ', ' + self.semester
 
 
 class Student(models.Model):
