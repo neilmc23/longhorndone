@@ -6,7 +6,8 @@ from django.http import HttpResponse
 from .models import *
 
 def home_page(request):
-    pass
+    context = {'object_name': 'UT Austin Course List', 'object_list': latest_course_list}
+    return render(request, 'projectapp/linked_list.html', context)
 
 def course_list_page(request):
     latest_course_list = Course.objects.all()
