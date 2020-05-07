@@ -30,10 +30,6 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-}
 
 .topnav {
   overflow: hidden;
@@ -62,108 +58,57 @@ body {
 </head>
 <body>
 
+<div class="w3-top">
 <div class="topnav">
-  <a class="active" href="#home">Home</a>
-  <a href="#professors">Professors</a>
-  <a href="#courses">Courses</a>
-  <a href="#students">Students</a>
+  <a href="{% url 'home_page' %}">Home</a>
+  <a href="{% url 'professor_list_page' %}">Professors</a>
+  <a href="{% url 'course_list_page' %}">Courses</a>
+  <a href="{% url 'student_list_page' %}">Students</a>
+</div>
 </div>
 
 <!-- Main Content -->
-<title>Project1</title>
+<title>{{item.name}}</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
 h1 {padding-left: 20px; padding-right: 20px;}
 h3,h5,h6,p {text-align: left; padding-left: 10px; padding-right: 10px;}
 .spacer {height: 10px;}
+.spacer_nav {height: 50px;}
 </style>
 <body class="w3-light-grey">
 
 <!-- Sidebar -->
-<div class="w3-sidebar w3-bar-block w3-theme" style="width:25%>
-  <h1><b>Project 1</b></h1>
+<div class="w3-sidebar w3-bar-block w3-theme" style="width:25%; z-index: -1;">
+  <div class="spacer_nav"></div>
+  <h1><b>{{item.name}}</b></h1>
   <div style="padding: 20px">
     <h5><b>Group Members:</b></h5>
-  </div>
-  <div style="padding: 20px">
-    <button class="w3-button w3-block w3-white" style="padding: 10px">Metamaterials</button>
-    <div class="spacer"></div>
-    <button class="w3-button w3-block w3-white" style="padding: 10px">K design</button>
-  </div>
-  <div>
-    <button class="w3-button w3-block w3-hover-black" style="position: absolute;bottom: 0px;"><h6>Back</h6></button>
+    {% for s in item.students.all %}
+      <p>{{s}}</p>
+      <div class="spacer"></div>
+    {% endfor %}
   </div>
 </div>
+
 
 <!-- Content -->
 <div class="w3-col l8" style="margin-left:30%">
 <div class="w3-card-4 w3-margin w3-white"  style="padding: 10px">
-  <h5><b>Media:</b></h5>
-  <!-- Slideshow -->
-  <div class="w3-container">
-    <div class="w3-display-container mySlides">
-      <img src="longhorn.jpg" alt="longhorn" style="width:50%">
-    </div>
-    <div class="w3-display-container mySlides">
-      <img src="longhordn.jpg" alt="longhorn" style="width:50%">
-    </div>
-    <div class="w3-display-container mySlides">
-      <img src="longhorn.jpg" alt="longhorn" style="width:50%">
-    </div>
-
-    <!-- Slideshow next/previous buttons -->
-    <div class="w3-container w3-black w3-padding w3-large">
-      <div class="w3-left" onclick="plusDivs(-1)"><i class="fa fa-arrow-circle-left w3-hover-text-orange"></i></div>
-      <div class="w3-right" onclick="plusDivs(1)"><i class="fa fa-arrow-circle-right w3-hover-text-orange"></i></div>
-
-      <div class="w3-center">
-        <span class="w3-tag demodots w3-border w3-transparent w3-hover-white" onclick="currentDiv(1)"></span>
-        <span class="w3-tag demodots w3-border w3-transparent w3-hover-white" onclick="currentDiv(2)"></span>
-        <span class="w3-tag demodots w3-border w3-transparent w3-hover-white" onclick="currentDiv(3)"></span>
-      </div>
-    </div>
-  </div>
-
-  <h5><b>Overview:</b></h5>
-  <p>xxxx</p>
-  <h5><b>Details:</b></h5>
-  <p>xxxx</p>
+  <div class="spacer_nav"></div>
+  {% load static %}
+  <img src="{% static item.image.name %}" alt=item.image.name style="width:100%">
+  <h6><b>Summary:</b></h6>
+  <p>{{item.summary}}</p>
+  <h6><b>Tags:</b></h6>
+  {% for t in item.tags.all %}
+    <p>{{t}}</p>
+  {% endfor %}
 </div>
 </div>
-
-
-<script>
-// Slideshow
-var slideIndex = 1;
-showDivs(slideIndex);
-
-function plusDivs(n) {
-  showDivs(slideIndex += n);
-}
-
-function currentDiv(n) {
-  showDivs(slideIndex = n);
-}
-
-function showDivs(n) {
-  var i;
-  var x = document.getElementsByClassName("mySlides");
-  var dots = document.getElementsByClassName("demodots");
-  if (n > x.length) {slideIndex = 1}
-  if (n < 1) {slideIndex = x.length} ;
-  for (i = 0; i < x.length; i++) {
-    x[i].style.display = "none";
-  }
-  for (i = 0; i < dots.length; i++) {
-    dots[i].className = dots[i].className.replace(" w3-white", "");
-  }
-  x[slideIndex-1].style.display = "block";
-  dots[slideIndex-1].className += " w3-white";
-}
-</script>
+</div>
 
 </body>
 </html>
