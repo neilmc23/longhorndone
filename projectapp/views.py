@@ -6,6 +6,7 @@ from django.http import HttpResponse
 from .models import *
 
 def home_page(request):
+    
     context = {'object_name': 'UT Austin Course List', 'object_list': latest_course_list}
     return render(request, 'projectapp/linked_list.html', context)
 
@@ -24,21 +25,21 @@ def student_list_page(request):
     context = {'object_name': 'UT Austin Student List', 'object_list': latest_student_list}
     return render(request, 'projectapp/linked_list.html', context)
 
-def course_page(request, course_abbreviation):
-    c = Course.objects.get(abbreviation=course_abbreviation)
-    latest_project_list = c.projects.all()
+def course_page(request, course_link):
+    c = [ c for c in Course.objects.all() if c.get_link() == course_link ][0]
+    latest_project_list = c.project_set.all()
     context = {'object_name': c.name, 'object_list': latest_project_list}
     return render(request, 'projectapp/linked_list.html', context)
 
 def professor_page(request, professor_eid):
     p = Professor.objects.get(eid=professor_eid)
-    latest_project_list = p.projects.all()
-    context = {'object_name': p.name, 'object_list': latest_project_list}
+    latest_course_list = p.courses.all()
+    context = {'object_name': p.name, 'object_list': latest_course_list}
     return render(request, 'projectapp/linked_list.html', context)
 
 def student_page(request, student_eid):
     s = Student.objects.get(eid=student_eid)
-    latest_project_list = s.projects.all()
+    latest_project_list = s.project_set.all()
     context = {'object_name': s.name, 'object_list': latest_project_list}
     return render(request, 'projectapp/linked_list.html', context)
 

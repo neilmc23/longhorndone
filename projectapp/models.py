@@ -5,7 +5,7 @@ class Course(models.Model):
     name = models.CharField(max_length=100, default='')
     abbreviation = models.CharField(max_length=50, default='')
     semester = models.CharField(max_length=50, default='')
-    view_page = 'course_page_abbreviation'
+    view_page = 'course_page_link'
     def get_link(self):
         abbreviation_no_spaces = self.abbreviation.replace(' ','')
         semester_no_spaces = self.semester.replace(' ','')
