@@ -50,3 +50,6 @@ There are a ton of features that could be added to a website like this. What we 
 
 Conclusions:
 Overall, the website met our initial goals to create a dynamic website with a detailed database which can filter and display projects, courses, students, and professors. Our three main templates created a website which is adaptable to varying input data and can be easily expanded.
+
+A Note on Accessing this Website:
+To view this website, first make sure you have Django installed, then download the repository. From the command line, navigate to this folder, which should contain manage.py. Run the command 'python3 manage.py runserver'. Finally, go to the following url 'http://127.0.0.1:8000/projectapp/' in your browser.
