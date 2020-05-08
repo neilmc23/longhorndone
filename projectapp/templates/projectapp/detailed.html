@@ -74,7 +74,7 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <style>
 h1 {padding-left: 20px; padding-right: 20px;}
-h3,h5,h6,p {text-align: left; padding-left: 10px; padding-right: 10px;}
+h3,h5,h6,p,a {text-align: left; padding-left: 10px; padding-right: 10px;}
 .spacer {height: 10px;}
 .spacer_nav {height: 50px;}
 </style>
@@ -106,11 +106,13 @@ h3,h5,h6,p {text-align: left; padding-left: 10px; padding-right: 10px;}
   <img src="{% static item.image.name %}" alt=item.image.name style="width:100%">
   <h6><b>Summary:</b></h6>
   <p>{{item.summary}}</p>
+  <h6><b>Link to Resources:</b></h6>
+  <a href={{item.link}}>Presentation</a>
   <h6><b>Tags:</b></h6>
   {% for t in item.tags.all %}
     <p>{{t}}</p>
   {% endfor %}
-</div>
+  </div>
 </div>
 </div>
 
